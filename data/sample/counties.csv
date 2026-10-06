@@ -1,0 +1,13 @@
+fips,name,state,state_fips,population,rural,source_id
+06075,San Francisco County,CA,06,808000,false,gazetteer
+06037,Los Angeles County,CA,06,9800000,false,gazetteer
+06001,Alameda County,CA,06,1640000,false,gazetteer
+06049,Modoc County,CA,06,8500,true,gazetteer
+48201,Harris County,TX,48,4800000,false,gazetteer
+48105,Crockett County,TX,48,3100,true,gazetteer
+48029,Bexar County,TX,48,2070000,false,gazetteer
+48453,Travis County,TX,48,1300000,false,gazetteer
+54047,McDowell County,WV,54,18000,true,gazetteer
+54021,Gilmer County,WV,54,7400,true,gazetteer
+54039,Kanawha County,WV,54,177000,false,gazetteer
+54013,Calhoun County,WV,54,6100,true,gazetteer

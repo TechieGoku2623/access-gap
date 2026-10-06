@@ -1,0 +1,37 @@
+fips,therapy_id,role,path_exercised,why_present,expected_behavior
+06075,zolgensma,best_case,adjacent certified center plus broad Medicaid,Best-case urban county next to a center,Ranks at or near the top under every weight scheme
+48105,zolgensma,distance_dominated,300+ mile rural travel burden,Distance dominates even when Medicaid covers,Geography-only rank is last among Zolgensma rows; coverage-only is mid
+48201,casgevy,coverage_gap,close to a center but Medicaid does not cover,Coverage versus geography are independent,Geography-only rank is high; coverage-only rank is last among Casgevy rows
+54047,luxturna,wide_prevalence,published prevalence range is 10x,Eligible population is an interval,prevalence ratio is 10; never collapse to a midpoint
+54021,zolgensma,missing_acs,ACS insured_pct is blank,Missingness is real,insured_pct stays missing; index does not impute zero
+06075,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06075,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06037,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06037,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06037,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06001,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06001,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06001,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06049,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06049,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+06049,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48201,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48201,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48105,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48105,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48029,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48029,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48029,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48453,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48453,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+48453,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54047,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54047,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54021,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54021,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54039,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54039,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54039,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54013,zolgensma,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54013,casgevy,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case
+54013,luxturna,filler,filler county-therapy row,Completes the 3-state slice,Scored; not a walkthrough case

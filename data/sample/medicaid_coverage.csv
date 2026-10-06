@@ -1,0 +1,10 @@
+state_fips,therapy_id,covered,source_id
+06,zolgensma,true,cms_medicaid
+06,casgevy,true,cms_medicaid
+06,luxturna,true,cms_medicaid
+48,zolgensma,true,cms_medicaid
+48,casgevy,false,cms_medicaid
+48,luxturna,false,cms_medicaid
+54,zolgensma,true,cms_medicaid
+54,casgevy,true,cms_medicaid
+54,luxturna,true,cms_medicaid

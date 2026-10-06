@@ -1,0 +1,68 @@
+[project]
+name = "access-gap"
+version = "0.1.0"
+description = "Map who can actually reach approved gene therapies. County × therapy access index. Not a care navigator."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+authors = [{ name = "access-gap contributors" }]
+dependencies = [
+  "pydantic>=2.10",
+  "structlog>=24.4",
+  "typer>=0.15",
+  "rich>=13.9",
+  "duckdb>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "ruff>=0.8",
+  "mypy>=1.13",
+]
+
+[project.scripts]
+access-gap = "access_gap.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/access_gap"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["typer.Option", "typer.Argument"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["access_gap"]
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["research.*", "tests.*"]
+follow_imports = "silent"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=access_gap --cov-report=term-missing --cov-fail-under=80"
+
+[tool.coverage.run]
+source = ["src/access_gap"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]

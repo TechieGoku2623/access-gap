@@ -1,0 +1,99 @@
+{
+  "completeness_threshold": 0.8,
+  "decision": "Usable: cms_medicaid, acs_s2701, travel_standin, orphanet_cdc, gazetteer, center_list. Not usable as a primary index input: capacity_sparse. ACS missingness on Gilmer is kept as missing.",
+  "evaluation_date": "2026-10-06",
+  "gilmer_insured_pct_is_null": true,
+  "gold_source": "Committed 3-state slice. Not a live CMS or Census pull. Replacing the slice with a dated national extract is the measurement that would retire that limitation.",
+  "n_counties": 12,
+  "n_pairs": 36,
+  "sources": [
+    {
+      "completeness": 1.0,
+      "decision": "usable",
+      "freshness_days": 264,
+      "n": 9,
+      "n_missing": 0,
+      "retrieved": "2026-01-15",
+      "source_id": "cms_medicaid",
+      "table": "medicaid_coverage",
+      "usable": true
+    },
+    {
+      "completeness": 0.9166666666666666,
+      "decision": "usable with explicit missing handling (never impute zero)",
+      "freshness_days": 264,
+      "n": 12,
+      "n_missing": 1,
+      "retrieved": "2026-01-15",
+      "source_id": "acs_s2701",
+      "table": "acs_insurance",
+      "usable": true
+    },
+    {
+      "completeness": 1.0,
+      "decision": "usable",
+      "freshness_days": 264,
+      "n": 36,
+      "n_missing": 0,
+      "retrieved": "2026-01-15",
+      "source_id": "travel_standin",
+      "table": "distances",
+      "usable": true
+    },
+    {
+      "completeness": 1.0,
+      "decision": "usable",
+      "freshness_days": 264,
+      "n": 4,
+      "n_missing": 0,
+      "retrieved": "2026-01-15",
+      "source_id": "orphanet_cdc",
+      "table": "prevalence",
+      "usable": true
+    },
+    {
+      "completeness": 0.5,
+      "decision": "not usable as a primary index input",
+      "freshness_days": 264,
+      "n": 2,
+      "n_missing": 1,
+      "retrieved": "2026-01-15",
+      "source_id": "capacity_sparse",
+      "table": "capacity",
+      "usable": false
+    },
+    {
+      "completeness": 1.0,
+      "decision": "usable",
+      "freshness_days": 264,
+      "n": 12,
+      "n_missing": 0,
+      "retrieved": "2026-01-15",
+      "source_id": "gazetteer",
+      "table": "counties",
+      "usable": true
+    },
+    {
+      "completeness": 1.0,
+      "decision": "usable",
+      "freshness_days": 264,
+      "n": 3,
+      "n_missing": 0,
+      "retrieved": "2026-01-15",
+      "source_id": "center_list",
+      "table": "centers",
+      "usable": true
+    }
+  ],
+  "unusable_sources": [
+    "capacity_sparse"
+  ],
+  "usable_sources": [
+    "cms_medicaid",
+    "acs_s2701",
+    "travel_standin",
+    "orphanet_cdc",
+    "gazetteer",
+    "center_list"
+  ]
+}

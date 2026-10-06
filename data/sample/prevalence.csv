@@ -1,0 +1,5 @@
+therapy_id,fips,prev_low_per_100k,prev_high_per_100k,source_id
+zolgensma,,8.0,10.0,orphanet_cdc
+casgevy,,25.0,40.0,orphanet_cdc
+luxturna,,0.5,1.0,orphanet_cdc
+luxturna,54047,0.1,1.0,orphanet_cdc

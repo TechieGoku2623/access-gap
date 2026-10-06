@@ -1,0 +1,4 @@
+therapy_id,name,indication,visit_multiplier,source_id
+zolgensma,Onasemnogene abeparvovec,spinal muscular atrophy,8,center_list
+casgevy,Exagamglogene autotemcel,sickle cell disease,12,center_list
+luxturna,Voretigene neparvovec,RPE65-mediated retinal dystrophy,6,center_list

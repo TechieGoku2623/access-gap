@@ -1,0 +1,99 @@
+{
+  "decision": "The composite access index needs rethinking; rankings are not stable across defensible weight schemes (min Spearman 0.632 < 0.70).",
+  "gold_source": "Committed 3-state slice. National rank correlation is unmeasured.",
+  "incomplete_dropped_from_correlation": [
+    "54021\u00d7casgevy",
+    "54021\u00d7luxturna",
+    "54021\u00d7zolgensma"
+  ],
+  "min_spearman": 0.6322056612706887,
+  "n_complete_for_correlation": 33,
+  "n_pairs": 36,
+  "needs_rethinking": true,
+  "pairs": [
+    {
+      "left": "default",
+      "n": 33,
+      "right": "equal",
+      "spearman": 0.9983288770053476
+    },
+    {
+      "left": "default",
+      "n": 33,
+      "right": "geography_only",
+      "spearman": 0.8463212595656322
+    },
+    {
+      "left": "default",
+      "n": 33,
+      "right": "coverage_only",
+      "spearman": 0.8927294328713703
+    },
+    {
+      "left": "default",
+      "n": 33,
+      "right": "travel_heavy",
+      "spearman": 0.9261363636363636
+    },
+    {
+      "left": "equal",
+      "n": 33,
+      "right": "geography_only",
+      "spearman": 0.8346155713282098
+    },
+    {
+      "left": "equal",
+      "n": 33,
+      "right": "coverage_only",
+      "spearman": 0.9053314858480976
+    },
+    {
+      "left": "equal",
+      "n": 33,
+      "right": "travel_heavy",
+      "spearman": 0.9191176470588235
+    },
+    {
+      "left": "geography_only",
+      "n": 33,
+      "right": "coverage_only",
+      "spearman": 0.6322056612706887
+    },
+    {
+      "left": "geography_only",
+      "n": 33,
+      "right": "travel_heavy",
+      "spearman": 0.955351384291337
+    },
+    {
+      "left": "coverage_only",
+      "n": 33,
+      "right": "travel_heavy",
+      "spearman": 0.7569633154687602
+    }
+  ],
+  "spearman_threshold": 0.7,
+  "teaching_cases": {
+    "best_case": {
+      "coverage_score": 0.982,
+      "effective_miles": 128.0,
+      "fips": "06075",
+      "geography_score": 0.539568345323741,
+      "therapy_id": "zolgensma"
+    },
+    "coverage_gap": {
+      "coverage_score": 0.24599999999999997,
+      "effective_miles": 336.0,
+      "fips": "48201",
+      "geography_score": 0.30864197530864196,
+      "therapy_id": "casgevy"
+    },
+    "distance_dominated": {
+      "coverage_score": 0.9339999999999999,
+      "effective_miles": 5760.0,
+      "fips": "48105",
+      "geography_score": 0.025380710659898477,
+      "therapy_id": "zolgensma"
+    }
+  }
+}

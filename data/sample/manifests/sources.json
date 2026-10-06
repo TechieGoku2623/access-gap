@@ -1,0 +1,62 @@
+{
+  "disclaimer": "Designed stand-in numbers. Not a live CMS, Census, or manufacturer pull.",
+  "evaluation_date": "2026-10-06",
+  "sources": [
+    {
+      "id": "cms_medicaid",
+      "name": "State Medicaid gene-therapy coverage (designed stand-in)",
+      "url": "https://www.medicaid.gov/",
+      "retrieved": "2026-01-15",
+      "license": "public",
+      "notes": "Values are designed stand-ins for Phase 0, not a live CMS scrape."
+    },
+    {
+      "id": "acs_s2701",
+      "name": "ACS 5-year health insurance coverage (designed stand-in)",
+      "url": "https://www.census.gov/programs-surveys/acs",
+      "retrieved": "2026-01-15",
+      "license": "public domain (US Census)",
+      "notes": "Insured percentages are designed. Gilmer County is blank on purpose."
+    },
+    {
+      "id": "center_list",
+      "name": "Manufacturer certified-center list (designed stand-in)",
+      "url": "https://www.fda.gov/",
+      "retrieved": "2026-01-15",
+      "license": "public",
+      "notes": "Center names are real-looking stand-ins; coordinates are not used."
+    },
+    {
+      "id": "orphanet_cdc",
+      "name": "Published prevalence ranges (Orphanet / CDC, designed bounds)",
+      "url": "https://www.orpha.net/",
+      "retrieved": "2026-01-15",
+      "license": "citation required",
+      "notes": "Intervals only. McDowell × Luxturna is a 10x published range."
+    },
+    {
+      "id": "travel_standin",
+      "name": "County-to-center one-way miles (designed haversine stand-in)",
+      "url": "https://www.census.gov/geographies/reference-files.html",
+      "retrieved": "2026-01-15",
+      "license": "public",
+      "notes": "Straight-line miles. Multi-visit multiplier is applied in code, not here."
+    },
+    {
+      "id": "capacity_sparse",
+      "name": "Infusion-center monthly slots (sparse designed stand-in)",
+      "url": "https://www.fda.gov/",
+      "retrieved": "2026-01-15",
+      "license": "public",
+      "notes": "Only two centers have slot counts. Completeness is below the usable bar."
+    },
+    {
+      "id": "gazetteer",
+      "name": "County names and designed populations",
+      "url": "https://www.census.gov/programs-surveys/geography.html",
+      "retrieved": "2026-01-15",
+      "license": "public domain (US Census)",
+      "notes": "FIPS codes are real. Populations are designed stand-ins."
+    }
+  ]
+}
