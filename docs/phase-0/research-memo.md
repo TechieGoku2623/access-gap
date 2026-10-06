@@ -223,13 +223,13 @@ nights. This project will not claim those in Phase 0–3 without a source.
 
 | Phase | Deliverable | Status |
 | --- | --- | --- |
-| 0 | Research memo and harnesses | In review — docs/phase-0/research-memo.md |
-| 1 | Architecture, schemas, data contracts | Not started |
-| 2 | First vertical slice (national staging, configurable index) | Not started |
-| 3 | Evaluation, demo recordings, API | Not started |
+| 0 | Research memo and harnesses | Merged — docs/phase-0/research-memo.md |
+| 1 | Architecture, schemas, data contracts | Merged — docs/ARCHITECTURE.md |
+| 2 | First vertical slice (DuckDB staging, county CLI, sensitivity) | Merged |
+| 3 | Evaluation, demo recordings, choropleth | Merged — demo/*.cast |
 
-Phase 0 does not include a scoring API, a hosted warehouse, or
-asciinema recordings. Those start after this memo is reviewed.
+Phase 1–3 extend this memo on the committed 3-state slice. A national
+extract remains unmeasured. The access index stays fully transparent.
 
 ### Highest-risk technical unknowns going into Phase 1
 

@@ -93,7 +93,8 @@ def patch_readme() -> None:
         f"| Wide prevalence pairs | {pb['n_wide']} | {pb['n_pairs']} | "
         f"McDowell × Luxturna ratio {pb['mcdowell_luxturna_ratio']:.1f}× |\n"
         "| Silent point estimate used | no | — | Intervals only |\n"
-        "| National extract | Phase 2 | — | Live CMS/Census unmeasured |\n"
+        "| ACS imputed to zero | no | — | Gilmer stays missing |\n"
+        "| National extract | unmeasured | — | 3-state slice only |\n"
     )
     text = _replace_block(text, "<!-- EVAL_TABLE_BEGIN -->", "<!-- EVAL_TABLE_END -->", body)
     readme_path.write_text(text, encoding="utf-8")

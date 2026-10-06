@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>access-gap choropleth — zolgensma</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 2rem; max-width: 960px; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+    th, td { border-bottom: 1px solid #ddd; text-align: left; padding: 0.35rem 0.5rem; }
+    .note { color: #444; max-width: 40rem; }
+  </style>
+</head>
+<body>
+  <h1>access-gap county index — zolgensma</h1>
+  <p class="note">
+    Designed 3-state stand-in. Not a live CMS or Census pull. Not a care navigator.
+    Color is the <strong>default</strong> scheme (travel 0.40, medicaid 0.35, insurance 0.25).
+    Hatched counties have missing ACS; the index does <strong>not</strong> impute zero.
+    Eligible population is an interval and is not drawn as a point.
+  </p>
+  <svg viewBox="0 0 520 300" width="720" height="420" role="img"
+       aria-label="Schematic county map of the sample slice">
+    <pattern id="miss" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0,6 L6,0" stroke="#111" stroke-width="0.6" opacity="0.35"/>
+    </pattern>
+    <text x="40" y="28" font-size="14">California</text>
+    <text x="220" y="28" font-size="14">Texas</text>
+    <text x="400" y="28" font-size="14">West Virginia</text>
+    <rect x="40" y="80" width="70" height="36" fill="rgb(47,126,114)" stroke="#111" stroke-width="1.2" rx="4" /><text x="46" y="95" font-size="10" font-family="ui-monospace,monospace">06075</text><text x="46" y="108" font-size="9" font-family="ui-sans-serif,sans-serif">San 0.80</text>
+<rect x="220" y="230" width="70" height="36" fill="rgb(88,108,94)" stroke="#111" stroke-width="1.2" rx="4" /><text x="226" y="245" font-size="10" font-family="ui-monospace,monospace">48105</text><text x="226" y="258" font-size="9" font-family="ui-sans-serif,sans-serif">Crockett 0.56</text>
+<rect x="400" y="180" width="70" height="36" fill="rgb(99,104,89)" stroke="#111" stroke-width="1.2" rx="4" /><rect x="400" y="180" width="70" height="36" fill="url(#miss)" /><text x="406" y="195" font-size="10" font-family="ui-monospace,monospace">54021</text><text x="406" y="208" font-size="9" font-family="ui-sans-serif,sans-serif">Gilmer 0.49</text>
+<rect x="40" y="180" width="70" height="36" fill="rgb(84,110,96)" stroke="#111" stroke-width="1.2" rx="4" /><text x="46" y="195" font-size="10" font-family="ui-monospace,monospace">06037</text><text x="46" y="208" font-size="9" font-family="ui-sans-serif,sans-serif">Los 0.58</text>
+<rect x="40" y="130" width="70" height="36" fill="rgb(54,123,110)" stroke="#111" stroke-width="1.2" rx="4" /><text x="46" y="145" font-size="10" font-family="ui-monospace,monospace">06001</text><text x="46" y="158" font-size="9" font-family="ui-sans-serif,sans-serif">Alameda 0.76</text>
+<rect x="40" y="230" width="70" height="36" fill="rgb(84,110,96)" stroke="#111" stroke-width="1.2" rx="4" /><text x="46" y="245" font-size="10" font-family="ui-monospace,monospace">06049</text><text x="46" y="258" font-size="9" font-family="ui-sans-serif,sans-serif">Modoc 0.58</text>
+<rect x="220" y="80" width="70" height="36" fill="rgb(61,120,107)" stroke="#111" stroke-width="1.2" rx="4" /><text x="226" y="95" font-size="10" font-family="ui-monospace,monospace">48201</text><text x="226" y="108" font-size="9" font-family="ui-sans-serif,sans-serif">Harris 0.72</text>
+<rect x="220" y="130" width="70" height="36" fill="rgb(86,109,95)" stroke="#111" stroke-width="1.2" rx="4" /><text x="226" y="145" font-size="10" font-family="ui-monospace,monospace">48029</text><text x="226" y="158" font-size="9" font-family="ui-sans-serif,sans-serif">Bexar 0.57</text>
+<rect x="220" y="180" width="70" height="36" fill="rgb(83,111,96)" stroke="#111" stroke-width="1.2" rx="4" /><text x="226" y="195" font-size="10" font-family="ui-monospace,monospace">48453</text><text x="226" y="208" font-size="9" font-family="ui-sans-serif,sans-serif">Travis 0.59</text>
+<rect x="400" y="130" width="70" height="36" fill="rgb(83,110,96)" stroke="#111" stroke-width="1.2" rx="4" /><rect x="400" y="130" width="70" height="36" fill="url(#miss)" /><text x="406" y="145" font-size="10" font-family="ui-monospace,monospace">54047</text><text x="406" y="158" font-size="9" font-family="ui-sans-serif,sans-serif">McDowell 0.58</text>
+<rect x="400" y="80" width="70" height="36" fill="rgb(81,111,97)" stroke="#111" stroke-width="1.2" rx="4" /><rect x="400" y="80" width="70" height="36" fill="url(#miss)" /><text x="406" y="95" font-size="10" font-family="ui-monospace,monospace">54039</text><text x="406" y="108" font-size="9" font-family="ui-sans-serif,sans-serif">Kanawha 0.59</text>
+<rect x="400" y="230" width="70" height="36" fill="rgb(83,110,96)" stroke="#111" stroke-width="1.2" rx="4" /><rect x="400" y="230" width="70" height="36" fill="url(#miss)" /><text x="406" y="245" font-size="10" font-family="ui-monospace,monospace">54013</text><text x="406" y="258" font-size="9" font-family="ui-sans-serif,sans-serif">Calhoun 0.58</text>
+  </svg>
+  <h2>County table</h2>
+  <table>
+    <thead><tr><th>FIPS</th><th>County</th><th>State</th><th>Rural</th><th>Index</th><th>ACS</th></tr></thead>
+    <tbody>
+      <tr><td>06075</td><td>San Francisco County</td><td>CA</td><td>urban</td><td>0.80</td><td>complete</td></tr>
+<tr><td>48105</td><td>Crockett County</td><td>TX</td><td>rural</td><td>0.56</td><td>complete</td></tr>
+<tr><td>54021</td><td>Gilmer County</td><td>WV</td><td>rural</td><td>0.49</td><td> ACS missing</td></tr>
+<tr><td>06037</td><td>Los Angeles County</td><td>CA</td><td>urban</td><td>0.58</td><td>complete</td></tr>
+<tr><td>06001</td><td>Alameda County</td><td>CA</td><td>urban</td><td>0.76</td><td>complete</td></tr>
+<tr><td>06049</td><td>Modoc County</td><td>CA</td><td>rural</td><td>0.58</td><td>complete</td></tr>
+<tr><td>48201</td><td>Harris County</td><td>TX</td><td>urban</td><td>0.72</td><td>complete</td></tr>
+<tr><td>48029</td><td>Bexar County</td><td>TX</td><td>urban</td><td>0.57</td><td>complete</td></tr>
+<tr><td>48453</td><td>Travis County</td><td>TX</td><td>urban</td><td>0.59</td><td>complete</td></tr>
+<tr><td>54047</td><td>McDowell County</td><td>WV</td><td>rural</td><td>0.58</td><td> ACS missing</td></tr>
+<tr><td>54039</td><td>Kanawha County</td><td>WV</td><td>urban</td><td>0.59</td><td> ACS missing</td></tr>
+<tr><td>54013</td><td>Calhoun County</td><td>WV</td><td>rural</td><td>0.58</td><td> ACS missing</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

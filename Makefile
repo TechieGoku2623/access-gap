@@ -1,7 +1,7 @@
 export PATH := $(HOME)/.local/bin:$(PATH)
 UV ?= uv
 
-.PHONY: setup lint test research eval demo record
+.PHONY: setup lint test research eval demo demo-build report record
 
 setup:
 	$(UV) sync --extra dev
@@ -24,8 +24,13 @@ eval:
 	$(UV) run python research/phase0/render_docs.py
 
 demo:
-	$(UV) run access-gap demo-plan --dry-run
+	$(UV) run access-gap demo
+
+demo-build:
+	$(UV) run access-gap demo-build
+
+report:
+	$(UV) run access-gap report --dest docs/report.html --therapy zolgensma
 
 record:
-	@echo "Asciinema recordings are a Phase 3 deliverable (demo/*.cast)."
-	@echo "Phase 0 has no score CLI to record."
+	$(UV) run python scripts/record_demo.py
