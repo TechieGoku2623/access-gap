@@ -1,0 +1,3 @@
+1
+00:00:04,307 --> 00:00:08,310
+The index decomposes — every component shown separately

@@ -1,0 +1,39 @@
+title: access-gap
+tagline: Mapping who can actually reach approved gene therapies
+problem:
+  - Approved gene therapies cost millions per patient.
+  - Access depends on geography, certification, and state Medicaid policy.
+  - None of it is assembled in one place.
+shots:
+  - id: 01-build
+    command: access-gap demo-build --summary
+    caption: dbt lineage and tests across the sample slice
+    hold: 3.5
+    highlight: "Lineage|PASS"
+    failure_beat: false
+  - id: 02-best-case
+    command: access-gap county --fips 06075 --therapy zolgensma
+    caption: The index decomposes — every component shown separately
+    hold: 4.0
+    highlight: "Component contributions"
+    failure_beat: false
+  - id: 03-same-score
+    command: access-gap county --fips 48105 --therapy zolgensma --summary; access-gap county --fips 48201 --therapy casgevy --summary
+    caption: Same composite score, entirely different barrier
+    hold: 5.0
+    highlight: "index|medicaid|distance"
+    failure_beat: true
+  - id: 04-sensitivity
+    command: access-gap sensitivity --therapy zolgensma --summary
+    caption: If rank depends on arbitrary weights, the analysis is not publishable
+    hold: 4.0
+    highlight: "Spearman|rethinking"
+    failure_beat: false
+results:
+  command: access-gap report --summary --dest /tmp/access-gap-report.html --therapy zolgensma
+  caption: The county map rebuilds from data with one command
+  hold: 6.0
+end_card:
+  url: github.com/techiegoku2623/access-gap
+  license: MIT
+gif_beat: 03-same-score

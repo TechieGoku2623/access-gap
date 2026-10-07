@@ -9,6 +9,11 @@ navigator.
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+
+![access-gap demo](demo/out/access-gap-demo.gif)
+
+Regenerable terminal video: `make record`. [Full mp4](demo/out/access-gap-demo.mp4). Per-shot loops live in `demo/out/`. See `demo/README.md`.
+
 ## Status
 
 | Phase | Deliverable | Status |

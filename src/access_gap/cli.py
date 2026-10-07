@@ -18,7 +18,7 @@ from access_gap.report import write_report
 from access_gap.slice_data import load_slice
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
-console = Console(width=140)
+console = Console(width=100)
 
 
 @app.callback()
@@ -67,6 +67,7 @@ def demo_plan(
 @app.command("demo-build")
 def demo_build(
     sample_dir: Path | None = typer.Option(None, "--sample-dir"),
+    summary: bool = typer.Option(False, "--summary", help="Lineage + test verdict only"),
 ) -> None:
     """Build staging → intermediate → marts and print lineage plus tests."""
 
@@ -76,20 +77,24 @@ def demo_build(
     console.print("[bold]Lineage[/bold]")
     for line in report.lineage:
         console.print(line)
-    console.print()
-    counts = Table(title="Row counts")
-    counts.add_column("relation")
-    counts.add_column("n", justify="right")
-    for name, n in report.row_counts.items():
-        counts.add_row(name, str(n))
-    console.print(counts)
-    tests = Table(title="Warehouse tests")
-    tests.add_column("test")
-    tests.add_column("result")
-    tests.add_column("detail")
-    for row in report.tests:
-        tests.add_row(row.name, "PASS" if row.passed else "FAIL", row.detail)
-    console.print(tests)
+    if not summary:
+        console.print()
+        counts = Table(title="Row counts")
+        counts.add_column("relation")
+        counts.add_column("n", justify="right")
+        for name, n in report.row_counts.items():
+            counts.add_row(name, str(n))
+        console.print(counts)
+        tests = Table(title="Warehouse tests")
+        tests.add_column("test")
+        tests.add_column("result")
+        tests.add_column("detail")
+        for row in report.tests:
+            tests.add_row(row.name, "PASS" if row.passed else "FAIL", row.detail)
+        console.print(tests)
+    else:
+        failed = [row.name for row in report.tests if not row.passed]
+        console.print(f"warehouse tests: {len(report.tests)}  failed: {failed or '(none)'}")
     if not report.all_passed:
         console.print("One or more warehouse tests failed.")
         _print_disclaimer()
@@ -151,6 +156,29 @@ def _print_county(payload: dict[str, Any]) -> None:
     console.print("  imputed_acs_to_zero: false   silent_point_estimate: false")
 
 
+def _print_county_summary(payload: dict[str, Any]) -> None:
+    covered = "covered" if payload["medicaid_covered"] else "NOT covered"
+    score = payload["index"]
+    score_txt = "—" if score is None else f"{float(score):.3f}"
+    console.print(
+        f"[bold]{payload['fips']}[/bold]  {payload['county']}, {payload['state']}  "
+        f"× {payload['therapy_id']}  ({payload['role']})  index={score_txt}"
+    )
+    insured = "MISSING" if payload["insured_missing"] else str(payload["insured_pct"])
+    console.print(
+        f"  medicaid: {covered}   distance: {payload['one_way_miles']} mi   insured={insured}"
+    )
+    contribs = payload["contributions"]
+    assert isinstance(contribs, dict)
+    parts: list[str] = []
+    for name, cell in contribs.items():
+        assert isinstance(cell, dict)
+        if cell["contribution"] is None:
+            continue
+        parts.append(f"{name} {float(cell['contribution']):.3f}")
+    console.print(f"  components: {', '.join(parts)}")
+
+
 @app.command("county")
 def county(
     fips: list[str] | None = typer.Option(
@@ -169,6 +197,7 @@ def county(
         "--compare/--no-compare",
         help="Print the designed best-case / rural / no-coverage triple.",
     ),
+    summary: bool = typer.Option(False, "--summary", help="Index, barrier, and component totals"),
 ) -> None:
     """Distance, coverage, eligible-pop interval, and index contributions."""
 
@@ -179,25 +208,28 @@ def county(
             rows = [county_payload(slice_, code, therapy, scheme) for code in fips]
         else:
             rows = designed_side_by_side(slice_)
-            console.print(
-                "Designed side-by-side: 06075×zolgensma (best-case), "
-                "48105×zolgensma (rural / distance), "
-                "48201×casgevy (no Medicaid coverage).\n"
-            )
+            if not summary:
+                console.print(
+                    "Designed side-by-side: 06075×zolgensma (best-case), "
+                    "48105×zolgensma (rural / distance), "
+                    "48201×casgevy (no Medicaid coverage).\n"
+                )
     else:
         if therapy is None:
             raise typer.BadParameter("--therapy is required when --fips is set")
         rows = [county_payload(slice_, code, therapy, scheme) for code in fips]
+    printer = _print_county_summary if summary else _print_county
     for i, row in enumerate(rows):
         if i:
             console.print()
-        _print_county(row)
+        printer(row)
     _print_disclaimer()
 
 
 @app.command("sensitivity")
 def sensitivity(
     therapy: str = typer.Option(..., "--therapy", help="Therapy id to rank."),
+    summary: bool = typer.Option(False, "--summary", help="Min Spearman + top movers"),
 ) -> None:
     """Rank correlation across weight schemes and counties that move most."""
 
@@ -208,40 +240,48 @@ def sensitivity(
         f"counties={payload['n_counties']}  complete-case n={payload['n_complete']}  "
         f"min Spearman={float(payload['min_spearman']):.3f}"
     )
-    table = Table(title="Pairwise Spearman (complete cases)")
-    table.add_column("scheme A")
-    table.add_column("scheme B")
-    table.add_column("n", justify="right")
-    table.add_column("ρ", justify="right")
-    for row in payload["correlations"]:
-        assert isinstance(row, dict)
-        table.add_row(
-            str(row["scheme_a"]),
-            str(row["scheme_b"]),
-            str(row["n"]),
-            f"{float(row['spearman']):.3f}",
-        )
-    console.print(table)
-    movers = Table(title="Counties that move most (max rank shift vs default)")
-    movers.add_column("fips")
-    movers.add_column("name")
-    movers.add_column("rural")
-    movers.add_column("rank default", justify="right")
-    movers.add_column("rank geo", justify="right")
-    movers.add_column("rank coverage", justify="right")
-    movers.add_column("max shift", justify="right")
-    for row in payload["movers"][:8]:
-        assert isinstance(row, dict)
-        movers.add_row(
-            str(row["fips"]),
-            str(row["name"]),
-            "yes" if row["rural"] else "no",
-            str(int(row["rank_default"])) if row["rank_default"] is not None else "—",
-            str(int(row["rank_geography"])) if row["rank_geography"] is not None else "—",
-            str(int(row["rank_coverage"])) if row["rank_coverage"] is not None else "—",
-            f"{float(row['max_rank_shift']):.0f}",
-        )
-    console.print(movers)
+    if not summary:
+        table = Table(title="Pairwise Spearman (complete cases)")
+        table.add_column("scheme A")
+        table.add_column("scheme B")
+        table.add_column("n", justify="right")
+        table.add_column("ρ", justify="right")
+        for row in payload["correlations"]:
+            assert isinstance(row, dict)
+            table.add_row(
+                str(row["scheme_a"]),
+                str(row["scheme_b"]),
+                str(row["n"]),
+                f"{float(row['spearman']):.3f}",
+            )
+        console.print(table)
+        movers = Table(title="Counties that move most (max rank shift vs default)")
+        movers.add_column("fips")
+        movers.add_column("name")
+        movers.add_column("rural")
+        movers.add_column("rank default", justify="right")
+        movers.add_column("rank geo", justify="right")
+        movers.add_column("rank coverage", justify="right")
+        movers.add_column("max shift", justify="right")
+        for row in payload["movers"][:8]:
+            assert isinstance(row, dict)
+            movers.add_row(
+                str(row["fips"]),
+                str(row["name"]),
+                "yes" if row["rural"] else "no",
+                str(int(row["rank_default"])) if row["rank_default"] is not None else "—",
+                str(int(row["rank_geography"])) if row["rank_geography"] is not None else "—",
+                str(int(row["rank_coverage"])) if row["rank_coverage"] is not None else "—",
+                f"{float(row['max_rank_shift']):.0f}",
+            )
+        console.print(movers)
+    else:
+        console.print("Counties that move most (max rank shift vs default):")
+        for row in payload["movers"][:4]:
+            assert isinstance(row, dict)
+            console.print(
+                f"  {row['fips']}  {row['name']}  shift={float(row['max_rank_shift']):.0f}"
+            )
     if float(payload["min_spearman"]) < 0.70:
         console.print(
             "Index needs rethinking: min Spearman < 0.70. "
@@ -254,6 +294,7 @@ def sensitivity(
 def report_cmd(
     dest: Path | None = typer.Option(None, "--dest"),
     therapy: str = typer.Option("zolgensma", "--therapy"),
+    summary: bool = typer.Option(False, "--summary"),
 ) -> None:
     """Write a county choropleth HTML file from the sample slice."""
 
@@ -261,6 +302,17 @@ def report_cmd(
     path = write_report(out, therapy_id=therapy)
     console.print(f"Wrote choropleth to {path}")
     console.print("Schematic CA / TX / WV panels. Hatched = missing ACS (not zero).")
+    if summary:
+        ev = get_settings().repo_root / "docs" / "EVALUATION.md"
+        n = 0
+        for line in ev.read_text(encoding="utf-8").splitlines():
+            if line.startswith("# Evaluation"):
+                continue
+            console.print(line[:100])
+            if line.strip():
+                n += 1
+            if n >= 10:
+                break
     _print_disclaimer()
 
 

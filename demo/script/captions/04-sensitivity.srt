@@ -1,0 +1,4 @@
+1
+00:00:04,473 --> 00:00:08,474
+If rank depends on arbitrary weights, the analysis is not
+publishable
